@@ -1,13 +1,107 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*generated with Input range slider CSS style generator (version 20211225)
+https://toughengineer.github.io/demo/slider-styler*/
+.slider {
+    height: 2.2em;
+    -webkit-appearance: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.slider:focus {
+    outline: none;
+}
+
+/*webkit*/
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 1em;
+    background: #007cf8;
+    border: none;
+    box-shadow: 0 0 2px black;
+    margin-top: calc(max((0.7em - 1px - 1px) * 0.5,0px) - 1.5em * 0.5);
+}
+
+.slider::-webkit-slider-runnable-track {
+    height: 0.7em;
+    border: 1px solid #b2b2b2;
+    border-radius: 0.5em;
+    background: linear-gradient(to right, #FFFFFF, #FFFFFF);
+    box-shadow: none;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    background: #0061c3;
+}
+
+.slider::-webkit-slider-thumb:active {
+    background: #2f98f9;
+}
+
+/*mozilla*/
+.slider::-moz-range-thumb {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 1em;
+    background: #007cf8;
+    border: none;
+    box-shadow: 0 0 2px black;
+}
+
+.slider::-moz-range-track {
+    height: max(calc(0.7em - 1px - 1px),0px);
+    border: 1px solid #b2b2b2;
+    border-radius: 0.5em;
+    background: linear-gradient(to right, #FFFFFF, #FFFFFF);
+    box-shadow: none;
+}
+
+.slider::-moz-range-thumb:hover {
+    background: #0061c3;
+}
+
+.slider::-moz-range-thumb:active {
+    background: #2f98f9;
+}
+
+/*ms*/
+.slider::-ms-fill-upper {
+    background: transparent;
+    border-color: transparent;
+}
+
+.slider::-ms-fill-lower {
+    background: transparent;
+    border-color: transparent;
+}
+
+.slider::-ms-thumb {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 1em;
+    background: #007cf8;
+    border: none;
+    box-shadow: 0 0 2px black;
+    margin-top: 0;
+    box-sizing: border-box;
+}
+
+.slider::-ms-track {
+    height: 0.7em;
+    border-radius: 0.5em;
+    background: linear-gradient(to right, #FFFFFF, #FFFFFF);
+    border: 1px solid #b2b2b2;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+.slider::-ms-thumb:hover {
+    background: #0061c3;
+}
+
+.slider::-ms-thumb:active {
+    background: #2f98f9;
 }
