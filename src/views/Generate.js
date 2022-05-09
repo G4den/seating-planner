@@ -41,8 +41,8 @@ const Generate = (props) => {
                         <h1 className={"text-xl font-bold"}>
                             Drag this link to you bookmarks to save for later
                         </h1>
-                        <a href={`https://seatingplanner.com/generate/${id}`} className="font-bold text-blue-400 text-2xl">
-                            https://seatingplanner.com/generate/{id}
+                        <a href={`https://seatingplanner.app/generate/${id}`} className="font-bold text-blue-400 text-2xl">
+                            https://seatingplanner.app/generate/{id}
                         </a>
                     </div>
                 </React.Fragment>
