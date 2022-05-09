@@ -1,7 +1,14 @@
 import useState from "react-usestateref";
 import {Link, useNavigate} from "react-router-dom";
 import { connect } from 'react-redux';
-import { CreateRoom } from './../actions';  
+import { CreateRoom, SetAllStudents, SetPassword } from './../actions';  
+
+import axios from "axios";
+
+const api = axios.create({
+    baseURL: "https://seating-planner-api.herokuapp.com/", 
+})
+
 
 const {MdRefresh} = require("react-icons/md")
 
@@ -9,7 +16,6 @@ const Landing = (props) => {
     const navigate = useNavigate();
     const [checking, setChecking] = useState(false)
     const [checkTimeout, setCheckTimeout] = useState()
-
 
     const onInputChange = (e) => {
         if(checkTimeout){
@@ -25,9 +31,16 @@ const Landing = (props) => {
 
     const checkCode = async (code) => {
         setChecking(true);
-        setTimeout(() => {
+
+        try{
+            const res = await api.get(`/classroom/${code}`)
+            await props.SetPassword(code);
+            props.SetAllStudents(res.data.classroom.students.map(student => student.name))
             navigate("/updateStudent/signIn")
-        }, 1000)
+        }
+        catch{
+            setChecking(false)
+        }
     }
 
     const onCreateRoom = () => {
@@ -61,4 +74,4 @@ const Landing = (props) => {
     )
 }
 
-export default connect(undefined, {CreateRoom})(Landing)
+export default connect(undefined, {CreateRoom, SetAllStudents, SetPassword})(Landing)

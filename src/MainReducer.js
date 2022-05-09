@@ -20,10 +20,8 @@ const MainReducer = (state=DEFAULT_STATE, action) => {
             return {...state, classRoomId: action.payload.id}
         case "SET_CLASSROOM_PASSWORD":
             return {...state, classRoomPassword: action.payload.password}
-        case 'SET_STUDENTS':
-            return {...state, allStudents:action.payload.allStudents};
         case 'SET_ALL_STUDENTS':
-            return {...state, all: action.payload.students};
+            return {...state, allStudents: action.payload.students};
         case 'DELETE_STUDENT_FOR_CREATION':
             return {...state, creationStudents: state.creationStudents.filter(student => student !== action.payload.student)};
         case 'SET_LIKED_STUDENTS':

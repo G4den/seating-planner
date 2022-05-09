@@ -12,7 +12,7 @@ function App() {
             <Route  path="/create" element={<Create/>}/>
             <Route path="/updateStudent/*" element={<UpdatePreferences/>}/>
             <Route  path="/success" element={<Success/>}/>
-            <Route  path="/generate" element={<Generate/>}/>
+            <Route  path="/generate/:id" element={<Generate/>}/>
             <Route  path="/" element={<Landing/>}/>
         </Routes>
     </div>

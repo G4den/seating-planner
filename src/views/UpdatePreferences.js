@@ -7,12 +7,29 @@ import {Route, Routes, useMatch, useNavigate} from "react-router-dom";
 import LinkButton from "../components/LinkButton";
 import WhiteboardDistance from "../components/WhiteboardDistance"
 
+import axios from "axios";
+const api = axios.create({
+    baseURL: "https://seating-planner-api.herokuapp.com/", 
+})
+
+
 const UpdatePreferences = (props) => {
-    const {allStudents} = props.state;
+    const {allStudents, classRoomPassword, signedInStudent, likedStudents, dislikedStudents, whiteboardPriority} = props.state;
     const navigate = useNavigate();
     const onStudentSignIn = (student) => {
         props.SignIn(student)
         navigate("/updateStudent/like")
+    }
+
+    const updateStudent = async () => {
+        await api.put(`/classroom/${classRoomPassword}/students`, {
+            studentName: signedInStudent,
+            newLikes: likedStudents,
+            newDislikes: dislikedStudents,
+            newDistance: whiteboardPriority,
+        })
+
+        navigate("/success")
     }
 
     return (
@@ -77,7 +94,9 @@ const UpdatePreferences = (props) => {
                         <WhiteboardDistance/>
                         <div className={"flex justify-end space-x-3"}>
                             <LinkButton to={'/updateStudent/dislike'} name={"Back"}/>
-                            <LinkButton to={'/success'}/>
+                            <button 
+                                className={"p-1 px-3 rounded-xl border-2 border-black w-min font-bold"}
+                                onClick={updateStudent}>Done</button>
                         </div>
                     </div>
                 }/>

@@ -1,11 +1,10 @@
 import React from "react"
 import CreateStudentCard from "../components/CreateStudentCard";
 import useState from 'react-usestateref';
-import {Link} from "react-router-dom";
-import LinkButton from "../components/LinkButton";
 import {connect} from "react-redux";
-import { CreateRoom, SetAllStudents } from './../actions';
+import { CreateRoom, CreateClassRoom } from './../actions';
 import {useNavigate} from "react-router-dom"
+
 const Create = (props) => {
     const [students, setStudents, currentStudents] = useState([])
     const [currentName, setCurrentName] = useState("")
@@ -44,7 +43,7 @@ const Create = (props) => {
                             </div>
                         </div>
                         <div className={"flex w-full justify-end"}>
-                            <button onClick={() => props.SetAllStudents(students, )}>SetAllStudents</button>
+                            <button onClick={() => props.CreateClassRoom(students, navigate)}>Next</button>
                         </div>
                     </React.Fragment>
 
@@ -60,4 +59,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {CreateRoom, SetAllStudents})(Create)
+export default connect(mapStateToProps, {CreateRoom, CreateClassRoom})(Create)

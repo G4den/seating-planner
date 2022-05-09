@@ -41,16 +41,16 @@ export const SetWhiteboardPriority = (priority) => {
     }
 }
 
-export const SetAllStudents = (students, navigate) => async(dispatch, getState) => {
-    const classRoomId = getState().Main
+export const CreateClassRoom = (students, navigate) => async(dispatch, getState) => {
+    const {classRoomPassword} = getState().Main
 
-    const res = await api.post(`/classroom/${classRoomId}/students`, {
+    const res = await api.post(`/classroom/${classRoomPassword}/students`, {
         students: students.map(student => {
             return {
                 name: student, 
                 likes:[], 
                 dislikes: [],
-                preferredDistanceToWhiteboard: 5,
+                preferredDistanceToWhiteboard: 0,
             }
         })
     })  
@@ -62,7 +62,23 @@ export const SetAllStudents = (students, navigate) => async(dispatch, getState) 
         }
     })
 
-    navigate("/generate")
+    dispatch({
+        type:"COMBINE",
+        payload: {
+            justCreated: true,
+        }
+    })
+
+    navigate(`/generate/${classRoomPassword}`)
+}
+
+export const SetAllStudents = (students) => async(dispatch) => {
+    await dispatch({
+        type:'SET_ALL_STUDENTS',
+        payload: {
+            students
+        }
+    })
 }
 
 export const DeleteStudentForCreation = (student) => {
@@ -89,5 +105,13 @@ export const CreateRoom = (navigate) => async (dispatch) => {
             classRoomPassword: classId
         }
     })
+}
 
+export const SetPassword = (password) => {
+    return {
+        type:"COMBINE",
+        payload: {
+            classRoomPassword: password
+        }
+    }
 }
